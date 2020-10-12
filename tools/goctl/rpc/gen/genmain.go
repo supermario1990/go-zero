@@ -38,6 +38,7 @@ func main() {
 	s, err := zrpc.NewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		{{.registers}}
 	})
+	defer s.Stop()
 	logx.Must(err)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
